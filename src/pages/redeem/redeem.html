@@ -1,0 +1,44 @@
+<!--
+  Generated template for the RedeemPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Redeem balance</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="close()" icon-only><ion-icon name="ios-close-circle-outline"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-item>
+        <ion-label class="label">Completed service ?</ion-label>
+        <ion-checkbox [(ngModel)]="check1"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label class="label">Paid for service ?</ion-label>
+        <ion-checkbox [(ngModel)]="check3"></ion-checkbox>
+      </ion-item>
+      <ion-item class="label">
+      <ion-label>Have you rated your vendor ?</ion-label>
+        <ion-checkbox [(ngModel)]="check2"></ion-checkbox>
+      </ion-item>
+      <ion-row class="img">
+          <ion-col col-5> <h6>Attach your image:</h6></ion-col>
+          <ion-col col-6>
+            <div class="upload-img" (click)="getImage()">
+              {{image}} <ion-icon name="camera"></ion-icon> 
+              <div *ngIf="!image=='image'" class="upload-img" (click)="imageDelete()" >
+                <ion-icon name="ios-close-circle"></ion-icon>
+            </div>  
+            </div>
+         </ion-col>
+        </ion-row>
+        <button ion-button round full  (click)="redeem()">Submit</button>
+</ion-content>

@@ -1,0 +1,189 @@
+<!--
+  Generated template for the OtherservicebookingPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar>
+    <ion-title>Service Booking</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding *ngIf='AC'>
+  <ion-list>
+      <ion-item>
+          <ion-label floating>AC type *</ion-label>
+            <ion-select style="color:rgb(109, 108, 108)"  [(ngModel)]="userData.type">
+              <ion-option value="Window">Window</ion-option>
+              <ion-option value="Split">Split</ion-option>
+          </ion-select>
+          </ion-item>
+
+      <ion-item>
+          <ion-label floating>Select Required Service *</ion-label>
+            <ion-select style="color:rgb(109, 108, 108)"  [(ngModel)]="userData.service">
+                <ion-option *ngFor="let key  of acdropdown" value="{{key.id}}">{{key.service}}</ion-option>
+          </ion-select>
+          </ion-item>
+
+          <ion-item>
+              <ion-label style="color:rgb(109, 108, 108)" floating>Describe your problem (optional)</ion-label>
+              <ion-input [(ngModel)]="userData.description"></ion-input>
+            </ion-item>
+
+                <!-- <ion-list radio-group [(ngModel)]="userData.servicePeriod">
+                    <ion-list-header class="ion-list-header">Service required on *
+                    </ion-list-header>
+                  
+                    <ion-item>
+                      <ion-label>Today</ion-label>
+                      <ion-radio value="Today"></ion-radio>
+                    </ion-item>
+                  
+                    <ion-item>
+                      <ion-label>Tomorrow</ion-label>
+                      <ion-radio value="Tomorrow"></ion-radio>
+                    </ion-item>
+                  
+                    <ion-item>
+                      <ion-label>WeekEnd</ion-label>
+                      <ion-radio value="WeekEnd"></ion-radio>
+                    </ion-item>
+                  </ion-list> -->
+
+                  <ion-item>
+                      <ion-label style="color:rgb(109, 108, 108)" floating>Service required on *</ion-label>
+                      <ion-datetime  class="date" [min] = "min" [max] = "max" displayFormat="YYYY / MM / DD" pickerFormat="DD MM YYYY" [(ngModel)]="userData.servicePeriod"></ion-datetime>
+                    </ion-item>
+
+          <ion-item>
+              <ion-label style="color:rgb(109, 108, 108)" floating>Promocode (optional)</ion-label>
+              <ion-input [(ngModel)]="userData.promocode"></ion-input>
+            </ion-item>
+
+          <button ion-button [disabled]="disable" class="sign_btn" (click)="ACbooking()"  round full>Book Your Service</button>
+  </ion-list>
+   
+</ion-content>
+
+<!-- // Plumbing service  -->
+<ion-content padding *ngIf='Plumbing'>
+    <ion-list>
+      
+        <ion-item>
+            <ion-label floating>Select Required Service *</ion-label>
+              <ion-select style="color:rgb(109, 108, 108)"  [(ngModel)]="userData.service">
+                  <ion-option *ngFor="let key  of plumbingropdown" value="{{key.id}}">{{key.service}}</ion-option>
+            </ion-select>
+            </ion-item>
+  
+            <ion-item>
+                <ion-label style="color:rgb(109, 108, 108)" floating>Describe your problem (optional)</ion-label>
+                <ion-input [(ngModel)]="userData.description"></ion-input>
+              </ion-item>
+    
+              <ion-item>
+                  <ion-label style="color:rgb(109, 108, 108)" floating>Service required on *</ion-label>
+                  <ion-datetime  class="date" [min] = "min" [max] = "max" displayFormat="YYYY / MM / DD" pickerFormat="DD MM YYYY" [(ngModel)]="userData.servicePeriod"></ion-datetime>
+                </ion-item>
+
+            <ion-item>
+                <ion-label style="color:rgb(109, 108, 108)" floating>Promocode (optional)</ion-label>
+                <ion-input [(ngModel)]="userData.promocode" ></ion-input>
+              </ion-item>
+  
+            <button ion-button [disabled]="disable" class="sign_btn" (click)="Plumbingbooking()"  round full>Book Your Service</button>
+    </ion-list>
+</ion-content>
+
+<!-- // Home Appliances -->
+<ion-content padding *ngIf='HomeAppliance'>
+    <ion-list>
+      
+        <ion-item>
+            <ion-label floating>Select type of appliances *</ion-label>
+              <ion-select style="color:rgb(109, 108, 108)"  [(ngModel)]="userData.service">
+                  <ion-option *ngFor="let key  of hadropdown" value="{{key.id}}">{{key.service}}</ion-option>
+            </ion-select>
+            </ion-item>
+
+            <ion-item>
+                <ion-label style="color:rgb(109, 108, 108)" floating>enter the brand name *</ion-label>
+                <ion-input [(ngModel)]="userData.brand"></ion-input>
+              </ion-item>
+  
+            <ion-item>
+                <ion-label style="color:rgb(109, 108, 108)" floating>Describe your problem (optional)</ion-label>
+                <ion-input [(ngModel)]="userData.description"></ion-input>
+              </ion-item>
+    
+              <ion-item>
+                  <ion-label style="color:rgb(109, 108, 108)" floating>Service required on *</ion-label>
+                  <ion-datetime  class="date" [min] = "min" [max] = "max" displayFormat="YYYY / MM / DD" pickerFormat="DD MM YYYY" [(ngModel)]="userData.servicePeriod"></ion-datetime>
+                </ion-item>
+
+            <ion-item>
+                <ion-label style="color:rgb(109, 108, 108)" floating>Promocode (optional)</ion-label>
+                <ion-input [(ngModel)]="userData.promocode" ></ion-input>
+              </ion-item>
+  
+            <button ion-button [disabled]="disable" class="sign_btn" (click)="HomeApplianceBooking()"  round full>Book Your Service</button>
+    </ion-list>
+</ion-content>
+
+<!-- // Beauty Service -->
+<ion-content padding *ngIf='Beauty'>
+    <ion-list>
+      
+        <ion-item>
+            <ion-label floating>Select required service *</ion-label>
+              <ion-select style="color:rgb(109, 108, 108)"  [(ngModel)]="userData.service">
+                  <ion-option *ngFor="let key  of beautydropdown" value="{{key.id}}">{{key.service}}</ion-option>
+            </ion-select>
+            </ion-item>
+
+                  <ion-item>
+                      <ion-label style="color:rgb(109, 108, 108)" floating>Service required on *</ion-label>
+                      <ion-datetime  class="date" [min] = "min" [max] = "max" displayFormat="YYYY / MM / DD" pickerFormat="DD MM YYYY" [(ngModel)]="userData.servicePeriod"></ion-datetime>
+                    </ion-item>
+
+            <ion-item>
+                <ion-label style="color:rgb(109, 108, 108)" floating>Promocode (optional)</ion-label>
+                <ion-input [(ngModel)]="userData.promocode" ></ion-input>
+              </ion-item>
+  
+            <button ion-button [disabled]="disable" class="sign_btn" (click)="BeautyBooking()"  round full>Book Your Service</button>
+    </ion-list>
+</ion-content>
+
+<!-- // Electrical Service Booking  -->
+<ion-content padding *ngIf='Electrical'>
+    <ion-list>
+      
+        <ion-item>
+            <ion-label floating>Select required service *</ion-label>
+              <ion-select style="color:rgb(109, 108, 108)"  [(ngModel)]="userData.service">
+                  <ion-option *ngFor="let key  of electricaldropdown" value="{{key.id}}">{{key.service}}</ion-option>
+            </ion-select>
+            </ion-item>
+
+            <ion-item>
+                <ion-label style="color:rgb(109, 108, 108)" floating>Describe your problem (optional)</ion-label>
+                <ion-input [(ngModel)]="userData.description"></ion-input>
+              </ion-item>
+    
+              <ion-item>
+                  <ion-label style="color:rgb(109, 108, 108)" floating>Service required on *</ion-label>
+                      <ion-datetime  class="date" [min] = "min" [max] = "max" displayFormat="YYYY / MM / DD" pickerFormat="DD MM YYYY" [(ngModel)]="userData.servicePeriod"></ion-datetime>
+                    </ion-item>
+
+            <ion-item>
+                <ion-label style="color:rgb(109, 108, 108)" floating>Promocode (optional)</ion-label>
+                <ion-input [(ngModel)]="userData.promocode" ></ion-input>
+              </ion-item>
+  
+            <button ion-button [disabled]="disable" class="sign_btn" (click)="ElectricaleBooking()"  round full>Book Your Service</button>
+    </ion-list>
+</ion-content>

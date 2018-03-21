@@ -1,0 +1,121 @@
+<!--
+  Generated template for the WalletPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <!-- <ion-buttons left> 
+        <button ion-button  icon-only clear>
+      <ion-icon name="ios-arrow-round-back-outline" class="color-wh"></ion-icon>
+    </button>
+    </ion-buttons> -->
+    <ion-title>Wallet</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div class="card">
+    <div class="cover">
+      <h1>WALLET BALANCE</h1>
+      <p class="p">₹{{walletamount}}</p>
+    </div>
+  </div>
+  <div class="segment">
+    <ion-segment [(ngModel)]="earns">
+      <ion-segment-button value="Earns">
+        Earnings
+      </ion-segment-button>
+    </ion-segment>
+    <!-- <ion-segment [(ngModel)]="refer">
+              <ion-segment-button value="Spends">
+                Refer&Earn
+              </ion-segment-button>
+            </ion-segment> -->
+
+
+  </div>
+  <ion-scroll scrollY="true" style="width: 100%; height: 100%;">
+
+    <div [ngSwitch]="earns">
+      <ion-list>
+        <div ion-item *ngIf="welcomeBonusAmount">
+          <h2>Earning amount : {{welcomeBonusAmount}} </h2>
+          <!-- <h2>No of referrals : {{count}} </h2> -->
+          <h5>Earned by : Welcome bonus</h5>
+          <button ion-button class="redeem" block (click)="welcomeBonusRedeem()"> Redeem your money</button>
+        </div>
+
+        <div ion-item *ngIf="welcomeBonusAmount1">
+            <h2>Earning amount : {{welcomeBonusAmount1}} </h2>
+            <!-- <h2>No of referrals : {{count}} </h2> -->
+            <h5>Earned by : Welcome bonus</h5>
+            <h5>Status : Redeem request sent</h5>
+          </div>
+
+          <div ion-item *ngIf="welcomeBonusAmount2">
+              <h2>Earning amount : {{welcomeBonusAmount2}} </h2>
+              <!-- <h2>No of referrals : {{count}} </h2> -->
+              <h5>Earned by : Welcome bonus</h5>
+              <h5>Status : Redeemed successfully</h5>
+            </div>
+
+        <div ion-item *ngIf="referEarning">
+          <h2>Earning amount : {{referEarning}} </h2>
+          <h2>No of referrals : {{count}} </h2>
+          <h5>Earned by : Refer & Earn</h5>
+          <button ion-button class="redeem" block (click)="redeem()"> Redeem your money</button>
+        </div>
+
+        <div ion-item *ngIf="referEarning1">
+          <h2>Earning amount : {{referEarning1}} </h2>
+          <h2>No of referrals : {{count1}} </h2>
+          <h5>Earned by : Refer & Earn</h5>
+          <h5>Status : Redeem request sent</h5>
+          <!-- <button ion-button  class="redeem" block (click)="redeem()"> Redeem your money</button> -->
+        </div>
+
+        <div ion-item *ngIf="referEarning2">
+          <h2>Earning amount : {{referEarning2}} </h2>
+          <h2>No of referrals : {{count2}} </h2>
+          <h5>Earned by : Refer & Earn</h5>
+          <h5>Status : Redeemed successfully</h5>
+          <!-- <button ion-button  class="redeem" block (click)="redeem()"> Redeem your money</button> -->
+        </div>
+      </ion-list>
+
+
+      <ion-list>
+        <div ion-item *ngFor="let item of items">
+          <!-- <button > -->
+          <!-- <button ion-item > -->
+            <!-- <div *ngIf = "item.promo_code">  -->
+          <h2>Earning amount : {{item.promo_credits}}</h2>
+          <h5>Make : {{item.make_name}}</h5>
+          <h6 *ngIf="item.softService">problem : {{item.softService}}</h6>
+          <h6 *ngIf="item.hardService">problem : {{item.hardService}}</h6>
+          <h6 *ngIf="item.description">problem : {{item.description}}</h6>
+          <h5>Earned by : promocode {{item.promo_code}}</h5>
+          <h5 *ngIf="item.redeem_status==1">Redeem Status : Request sent</h5>
+          <h5 *ngIf="item.redeem_status==2">Redeem Status : Redeemed successfully</h5>
+          <h6 *ngIf="item.customer_completed==0 && item.redeem_status==0" class="enable">Complete your service to redeem credits </h6>
+          <!-- </button> -->
+          <!-- </button> -->
+          <button *ngIf="item.customer_completed==1 && item.redeem_status==0" ion-button class="redeem" block (click)="openModal(item)">
+          Redeem your money</button>
+          <button *ngIf="item.customer_completed==0 && item.redeem_status==0" [disabled]="true" ion-button class="redeem" block (click)="openModal(item)">
+          Redeem your money</button>
+
+        </div>
+      <!-- </div> -->
+      </ion-list>
+    </div>
+  </ion-scroll>
+
+
+
+</ion-content>

@@ -1,0 +1,249 @@
+<ion-header no-border>
+  <ion-toolbar no-padding>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"  class="color-wh"></ion-icon>
+    </button>
+    <ion-title>Edit Booking</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding *ngIf="mobile">
+  <ion-list no-lines>
+<form [formGroup]="form" (ngSubmit)="serviceReq()">
+  <ion-item >
+    <!-- <ion-label>Select Make</ion-label> -->
+    <ion-select class="my-select" formControlName="make" name="make" [(ngModel)]="userData.make" >
+      <ion-option value="" disabled>Select Make<sup>*</sup></ion-option>
+      <ion-option *ngFor="let key  of makedropdown" value="{{key.id}}">{{key.make_name}}</ion-option>
+      <ion-option value="others">others</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item *ngIf="other">
+      <ion-input formControlName="othermake" name="othermake" type="text" [(ngModel)]="userData.othermake" placeholder="Enter Service Make" clearInput></ion-input>
+    </ion-item>
+  <div *ngIf="make.touched && make.invalid" class="alertstyle">
+    <div *ngIf="make.errors.required">Select Make</div>
+  </div>
+
+  <ion-item>
+    <ion-input formControlName="modelno" name="modelno" type="text" [(ngModel)]="userData.modelno" placeholder="Enter Model Number *"
+      clearInput></ion-input>
+  </ion-item>
+  <div *ngIf="modelno.touched && modelno.invalid" class="alertstyle">
+    <div *ngIf="modelno.errors.required">Select Model</div>
+  </div>
+
+  <ion-item>
+    <ion-label class="align">Select Service Required <sup>*</sup></ion-label>
+  </ion-item>
+
+  <ion-item>
+    <!-- <ion-label>Software</ion-label> -->
+    <ion-select  class="my-select" formControlName="soft" name="soft" [(ngModel)]="userData.soft">
+    
+      <ion-option value=""  disabled>Select Software</ion-option> 
+      <ion-option *ngFor="let key  of softdropdown" value="{{key.id}}" >{{key.service}}</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <!-- <ion-label>Hardware</ion-label> -->
+    <ion-select  class="my-select" formControlName="hard" name="hard" [(ngModel)]="userData.hard">
+      <ion-option value="" disabled>Select Hardware</ion-option>
+      <ion-option *ngFor="let key  of harddropdown" value="{{key.id}}">{{key.service}}</ion-option>
+    </ion-select>
+  </ion-item>
+ 
+  <ion-item>
+    <ion-input formControlName="others" name="others" type="text" [(ngModel)]="userData.others" placeholder="Others" clearInput></ion-input>
+  </ion-item>
+  <div *ngIf="others.touched && others.invalid||hard.touched && hard.invalid||soft.touched && soft.invalid" class="alertstyle">
+    <div *ngIf="others.errors.required||hard.errors.required||soft.errors.required">Select Model</div>
+  </div>
+
+  <ion-item>
+    <!-- <ion-label floating>Home Pick Up</ion-label> -->
+      <ion-select class="my-select" style="color:#fff"  [(ngModel)]="userData.pickup" formControlName="pickup" >
+          <ion-option value="" disabled>Select Home Pick Up<sup>*</sup></ion-option>       
+        <ion-option value="required">Required</ion-option>
+        <ion-option value="notrequired">Not Required</ion-option>
+       
+    </ion-select>
+    </ion-item>
+  <ion-item>
+    <select-searchable  class="my-select"
+    formControlName="loc" name="loc" type="text" [(ngModel)]="userData.loc"
+        title="Select Preferred Location *"
+      
+        [items]="ports"
+        [canSearch]="true"
+        [multiple]="true"
+        (onChange)="portChange($event)">
+    </select-searchable>
+</ion-item>
+<div  *ngIf="locvaild" class="alertstyle">Select Minimum 2 areas and Maximum 3</div>
+<!-- <ion-item>
+    <ion-input   formControlName="promocode" name="promocode" type="text" [(ngModel)]="userData.promocode" placeholder="Enter promo code"
+      clearInput></ion-input>
+  </ion-item> -->
+   <!-- <ion-item >
+    <ion-label>Select Preferred Locationfor Service</ion-label>
+    <ion-select formControlName="loc" name="loc" multiple [(ngModel)]="userData.loc" (ionChange)="serviceLoc($event)">
+      <ion-option *ngFor="let key  of preferdropdown" >{{key.area}}</ion-option>
+    </ion-select>
+  </ion-item> -->
+  <!-- <ion-item>
+    <ion-input formControlName="loc" name="loc" type="text" [(ngModel)]="userData.loc" (focusin)="preferLoc()" placeholder="Select Preferred Locationfor Service" clearInput></ion-input>
+  </ion-item> -->
+  <ion-row class="img">
+    <ion-col col-4> <h6 style="color:#fff" >Picture <sub>(optional)</sub> </h6></ion-col>
+    <ion-col col-1 style="color:#fff"><b>:</b></ion-col>
+    <ion-col col-6>
+    <div class="upload-img" (click)="getImage()">
+    {{userData.image}} <ion-icon name="camera"></ion-icon> </div>
+    <div class="upload-img" (click)="imageDelete()" *ngIf="!recording">
+    <ion-icon name="ios-close-circle"></ion-icon>
+    </div> 
+    </ion-col>
+    </ion-row>
+    <ion-row class="voice">
+    <ion-col col-4> <h6 style="color:#fff" >Voice Note <sub>(optional)</sub></h6></ion-col>
+    <ion-col col-1 style="color:#fff"><b>:</b></ion-col>
+    <ion-col col-6 ><div *ngIf="userData.audio"> {{userData.audio}}</div>
+    <div class="upload-audio" *ngIf="userData.audio" (click)="audioDelete()">
+    <ion-icon name="ios-close-circle"></ion-icon>
+    </div>
+           
+            <div class="upload-audio audiostop"  (click)="stopRecord()" *ngIf="recording">
+                <ion-icon name="ios-mic"></ion-icon>
+            </div>
+            <!-- <div class="upload-audio audiostart"  (click)="startRecord()"  *ngIf="!recording" >
+                <ion-icon name="ios-mic-outline"></ion-icon>
+            </div> -->
+            <div *ngIf="userData.audio==''">
+              <div class="upload-audio audiostart" (click)="startRecord()"  *ngIf="!recording" >
+                <ion-icon name="ios-mic-outline"></ion-icon>
+            </div>
+              
+            </div>
+            <!-- <button ion-button class="record" (click)="stopRecord()" *ngIf="recording"><ion-icon name="ios-mic" color="dark">&nbsp;</ion-icon>&nbsp;&nbsp;Stop</button>
+            <button ion-button class="record" (click)="startRecord()" *ngIf="!recording"><ion-icon name="ios-mic" color="dark">&nbsp;</ion-icon>&nbsp;&nbsp;Record</button> -->
+    </ion-col>
+  </ion-row>
+  <!-- <ion-list>
+    <ion-item *ngFor="let audio of audioList; index as i;">
+      <p>{{audio.filename}}</p>
+      {{userData.audio}}
+       <button ion-button clear item-end large (click)="playAudio(audio.filename, i)"><ion-icon name="play"></ion-icon></button> 
+      <div class="upload-audio" (click)="playAudio(audio.filename, i)">
+          <ion-icon name="play"></ion-icon>
+      </div>
+    </ion-item>
+  </ion-list> -->
+  <!-- <ion-item>
+    <p>{{imageURI}}</p>
+    <button ion-button color="secondary" (click)="getImage()">Get Image</button>
+    <button ion-button (click)="uploadFile()">Upload</button>
+  </ion-item> -->
+  <button ion-button type="submit" [disabled]="disable" class="sign_btn"  round full>Service Request</button>
+</form>
+</ion-list>
+
+</ion-content>
+<ion-content padding *ngIf="printer">
+  <ion-list no-lines>
+<form [formGroup]="form1" (ngSubmit)="serviceReq1()">
+  <ion-item >
+    <ion-input formControlName="make1" name="make1" type="text" [(ngModel)]="userdata1.make1" placeholder="Enter Service Make *" clearInput></ion-input>
+  </ion-item>
+  <div *ngIf="make1.touched && make1.invalid" class="alertstyle">
+    <div *ngIf="make1.errors.required">Select Make</div>
+  </div>
+
+  <ion-item>
+    <ion-input formControlName="modelno1" name="modelno1" type="text" [(ngModel)]="userdata1.modelno1" placeholder="Enter Model Number *"
+      clearInput></ion-input>
+  </ion-item>
+  <div *ngIf="modelno1.touched && modelno1.invalid" class="alertstyle">
+    <div *ngIf="modelno1.errors.required">Select Model</div>
+  </div>
+
+  <ion-item>
+    
+    <ion-textarea formControlName="describe" name="describe" type="text" [(ngModel)]="userdata1.describe" placeholder="Describe the problem *"
+      clearInput></ion-textarea>
+  </ion-item>
+
+  <ion-item>
+    <!-- <ion-label floating>Home Pick Up</ion-label> -->
+      <ion-select class="my-select" style="color:#fff"  [(ngModel)]="userdata1.pickup1" formControlName="pickup1" >
+          <ion-option value="" disabled>Select Home Pick Up<sup>*</sup></ion-option>       
+        <ion-option value="required">Required</ion-option>
+        <ion-option value="notrequired">Not Required</ion-option>
+       
+    </ion-select>
+    </ion-item>
+  <ion-item>
+    <select-searchable
+    formControlName="loc1" name="loc1" type="text" [(ngModel)]="userdata1.loc1"
+        title="Select Preferred Location *"
+        [items]="ports"
+        [canSearch]="true"
+        [multiple]="true"
+        (onChange)="portChange($event)">
+    </select-searchable>
+</ion-item>
+<div  class="alertstyle">
+    <div >*Select Minimum 2 areas and Maximum 3</div>
+  </div>
+<!-- <ion-item>
+    <ion-input formControlName="promocode1" name="promocode1" type="text" [(ngModel)]="userdata1.promocode1" placeholder="Enter promo code"
+      clearInput></ion-input>
+  </ion-item> -->
+  <!-- <ion-item>
+    <ion-label>Select Preferred Locationfor Service</ion-label>
+    <ion-select formControlName="loc1" name="loc1" multiple [(ngModel)]="userdata1.loc1" (ionChange)="serviceLoc($event)">
+      <ion-option *ngFor="let key  of preferdropdown" >{{key.area}}</ion-option>
+    </ion-select>
+  </ion-item> -->
+<!-- <ion-item>
+    <ion-input formControlName="loc" name="loc" type="text" [(ngModel)]="userData.loc" (focusin)="preferLoc()" placeholder="Select Preferred Locationfor Service" clearInput></ion-input>
+  </ion-item>  -->
+  <div class="upload-img" (click)="getImage()">
+      <ion-icon name="camera"></ion-icon>
+      <p>{{imageURI}}</p>
+      {{userData.image}}
+  </div>
+  
+  <ion-row class="voice">
+    <ion-col col-4> <h6 style="color:#fff" >Voice Note <sub>(optional)</sub></h6></ion-col>
+    <ion-col col-1 class="color-wh"><b>:</b></ion-col>
+    <ion-col col-4>
+        <!-- <button class="record" ion-button (click)="audio()"></button>
+            <ion-icon name="ios-mic" color="dark">&nbsp;</ion-icon> record</button> -->
+            <div class="upload-audio" (click)="stopRecord()" *ngIf="recording">
+                <ion-icon name="ios-mic"></ion-icon>
+            </div>
+            <div class="upload-audio" (click)="startRecord()"  *ngIf="!recording" >
+                <ion-icon name="ios-mic"></ion-icon>
+            </div>
+            <!-- <button ion-button class="record" (click)="stopRecord()" *ngIf="recording"><ion-icon name="ios-mic" color="dark">&nbsp;</ion-icon>&nbsp;&nbsp;Stop</button>
+            <button ion-button class="record" (click)="startRecord()" *ngIf="!recording"><ion-icon name="ios-mic" color="dark">&nbsp;</ion-icon>&nbsp;&nbsp;Record</button> -->
+    </ion-col>
+  </ion-row>
+  <ion-list>
+    <ion-item *ngFor="let audio of audioList; index as i;">
+      <p>{{audio.filename}}</p>
+      {{userData.audio}}
+      <!-- <button ion-button clear item-end large (click)="playAudio(audio.filename, i)"><ion-icon name="play"></ion-icon></button> -->
+      <div class="upload-audio" (click)="playAudio(audio.filename, i)">
+          <ion-icon name="play"></ion-icon>
+      </div>
+    </ion-item>
+  </ion-list>
+  <button ion-button type="submit" [disabled]="disable" class="sign_btn"  round full>Save Booking</button>
+</form>
+</ion-list>
+</ion-content>

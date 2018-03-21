@@ -1,0 +1,166 @@
+page-home {
+  //  ion-content{
+  //     //background-image: url('../assets/imgs/bg-pic.jpg');
+  //   // background-color: #ddd !important;
+  //   margin-top:10px;
+  //   }
+    // .selectbg{
+    //     background-image: url('../assets/imgs/Booknewserice.png');
+    //     min-height: 97px;
+    // }
+    // .QHSbg{
+    //     background-image: url('../assets/imgs/QSH.png');
+    //     min-height: 97px;
+    // }
+    .img-1{
+        
+            border-radius: 50%;
+            max-width: 40%;
+            top:10% !important;
+            // padding:8px ;
+           // left:0%;
+          //  border: 0;
+            background-color: #fff;
+            border:1px solid #0679c9 !important;
+          // background-color: rgba(14, 14, 14, 0.43);
+        
+    }
+    // .round{
+    //     margin-left: 30%;
+    //     margin-top: 10%;
+    //     border-radius: 50%;
+    //     background-color: #fff;
+    //     border:1px solid #0679c9 !important;
+    //     width: 60%;
+    // height: 60%;
+    // }
+ 
+    p{
+        color: #000;
+        font-weight: bold;
+    }
+    // .home-container .row-center img {
+    //     width: 100%;
+    //     height: 100%;
+    //     left: 0;
+    //     right: 0;
+    //     margin: 0 auto;
+    //     top: 50%;
+    //     filter: invert(140%);
+    // }
+    .toolbar-background {
+        background-color: #0679c9;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+    .color-wh{
+        color:#fff !important;
+    }
+    .toolbar-title{
+        font-size: 2rem;
+          font-weight: 500;
+          color: #fff;
+       //  text-align: center;
+          margin-left: -30px;
+        
+      }
+      .slide{
+        height: 50%;
+    }
+    .slides{
+      height:45%;
+    }
+    .banner{
+      height: auto;
+      width:auto;
+  }
+    // .grid{
+    //    margin-top:10px;
+    // }
+    
+    .balance{
+        color: #000;
+        font-weight: bold;
+        position: absolute;
+        top: 28% !important;
+        font-size: 1.2rem;
+        left: 42%;
+    }
+
+  /////////////////////////////////////////////////////////
+  
+  // .ion-col{
+  //  margin-bottom: 5px;
+  //  //box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  //  -webkit-box-shadow: 20px 0px 20px -6px #777;
+  //   -moz-box-shadow: 20px 0px 20px -6px #777;
+  //        box-shadow: 20px 0px 20px -6px #777;
+  //  border-radius: 50%;
+  //  padding: 15px; 
+  //  width:50%;
+  //  height:30%;
+  // }
+
+  @-webkit-keyframes animatetop {
+    from { top:-100px; opacity:0 } 
+    to { top:0px; opacity:1 }
+  }
+  
+  @keyframes animatetop { 
+    from{ top:-100px; opacity:0 } 
+    to{ top:0px; opacity:1 }
+  }
+
+  @-webkit-keyframes animatebottom {
+    from { bottom:-100px; opacity:0 } 
+    to { bottom:0px; opacity:1 }
+  }
+  
+  @keyframes animatebottom { 
+    from{ bottom:-100px; opacity:0 } 
+    to{ bottom:0px; opacity:1 }
+  }
+
+  .animate-left {
+    position: relative;
+    -webkit-animation-name: animateleft;
+    -webkit-animation-duration: 1s;
+    animation-name: animateleft;
+    animation-duration: 1.5s
+  }
+  
+  @-webkit-keyframes animateleft {
+    from { left:-100px; opacity:0 } 
+    to { left:0px; opacity:1 }
+  }
+  
+  @keyframes animateleft { 
+    from{ left:-100px; opacity:0 } 
+    to{ left:0px; opacity:1 }
+  }
+  
+  // animate right...............
+  
+  .animate-right {
+    position: relative;
+    -webkit-animation-name: animateright;
+    -webkit-animation-duration: 1s;
+    animation-name: animateright;
+    animation-duration: 1.5s
+  }
+  
+  @-webkit-keyframes animateright {
+    from { right:-100px; opacity:0 } 
+    to { right:0px; opacity:1 }
+  }
+  
+  @keyframes animateright { 
+    from{ right:-100px; opacity:0 } 
+    to{ right:0px; opacity:1 }
+  }
+ 
+}
+.tabbar {
+  opacity: 100 !important;
+}

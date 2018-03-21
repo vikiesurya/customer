@@ -1,0 +1,24 @@
+page-otherservicebooking {
+
+    .my-select {
+        min-width: 100%;
+        color:#000;
+        font-weight:500;
+        }
+
+        select-searchable.my-select.select-searchable.select-searchable-md.ng-untouched.ng-pristine.ng-invalid {
+            color: #000 !important;
+            background-color: #b7e7f5;
+            padding: 7px;
+            font-size: 13px;
+            border-radius: 5px;
+        }
+        .sign_btn{
+            background-color: #0679c9;
+            color: #fff;
+            margin-top:20px;
+        }
+        .ion-list-header{
+            font-size: 16px;
+        }
+}

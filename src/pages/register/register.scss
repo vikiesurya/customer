@@ -1,0 +1,52 @@
+page-register {
+
+    .toolbar-background {
+        background-color: transparent;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+   .content{
+         background-image: url('../assets/imgs/bg.png');
+         margin-top: 0px !important;
+    }
+    .optscreen{
+        margin-top:80px;
+    
+    }
+    .toolbar-title{
+        font-size: 2rem;
+          font-weight: 500;
+          color: #fff;
+          text-align: center;
+      }
+      .icon, .item, .label{
+          color:#fff !important;
+      }
+      .sign_btn{
+        background-color: #fff;
+        color: #0679c9;
+        margin-top:20px;
+    }
+    .item-md{
+        background-color: transparent !important;
+    }
+    a , b{
+        //text-decoration: none !important;
+        color: #fff;
+      //  text-align :center !important;
+    }
+
+    .text-input::-moz-placeholder {
+        color: white;
+      }
+      
+      .text-input:-ms-input-placeholder {
+        color: white;
+      }
+      
+      .text-input::-webkit-input-placeholder {
+        text-indent: 0;
+        color: white;
+      }
+}

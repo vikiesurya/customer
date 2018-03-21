@@ -1,0 +1,350 @@
+<!--
+  Generated template for the QuoteviewPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header no-border>
+
+  <ion-toolbar no-padding>
+      <button ion-button menuToggle>
+          <ion-icon name="menu" class="color-wh"></ion-icon>
+      </button>
+    <ion-title>Quote</ion-title>
+    <!-- <ion-segment>
+        <ion-segment-button  class="button-l" (click)="listshow()">
+          List View
+        </ion-segment-button>
+        <ion-segment-button  class="button-m" (click)="mapshow()">
+          Map View
+        </ion-segment-button>
+      </ion-segment> -->
+  </ion-toolbar>
+  <ion-segment>
+    <ion-segment-button  class="button-l" (click)="listshow()">
+      List View
+    </ion-segment-button>
+    <ion-segment-button  class="button-m" (click)="mapshow()">
+      Map View
+    </ion-segment-button>
+  </ion-segment>
+</ion-header>
+
+
+<ion-content style="padding:10px;"  >
+    <div *ngIf="image">
+            <ion-thumbnail  class="item-profile" >
+                    <img src="http://rytefix.in/images/imgs/{{image}}"/>
+                  </ion-thumbnail>
+            
+    </div>
+
+       
+   <ion-list class="listbg">
+          
+      <ion-row>
+          <ion-col col-12 class="head" text-center>
+              <h4><b>Booking Details</b></h4>
+          </ion-col>
+      </ion-row>
+      <ion-row *ngIf = "cgadget">
+            <ion-col col-4 text-left>
+             <b>Service Type</b>
+            </ion-col>
+            <ion-col col-1><b>:</b></ion-col>
+            <ion-col col-7 text-left>
+                {{cgadget}}
+            </ion-col>
+          </ion-row>
+
+          <ion-row *ngIf = "requestedService">
+                <ion-col col-4 text-left>
+                 <b>Requested Service</b>
+                </ion-col>
+                <ion-col col-1><b>:</b></ion-col>
+                <ion-col col-7 text-left>
+                    {{requestedService}}
+                </ion-col>
+              </ion-row>
+
+           <ion-row *ngIf = "make">
+               <ion-col col-4 text-left>
+                    <b>Make</b>
+                   </ion-col>
+               <ion-col col-1><b>:</b></ion-col>
+               <ion-col col-7 text-left>
+                   {{make}}
+               </ion-col>
+             </ion-row>
+
+             <ion-row *ngIf = "model">
+                 <ion-col col-4 text-left>
+                  <b>Model</b>
+                 </ion-col>
+                 <ion-col col-1><b>:</b></ion-col>
+                 <ion-col col-7 text-left>
+                     {{model}}
+                 </ion-col>
+               </ion-row>
+               <ion-row *ngIf = "timePeriod">
+                    <ion-col col-4 text-left>
+                     <b>Time Period</b>
+                    </ion-col>
+                    <ion-col col-1><b>:</b></ion-col>
+                    <ion-col col-7 text-left>
+                        {{timePeriod}}
+                    </ion-col>
+                  </ion-row>
+               
+               <ion-row *ngIf = "cgadget != 'Beauty_Services'">
+                   <ion-col col-4 text-left>
+                    <b>Problem</b>
+                   </ion-col>
+                   <ion-col col-1><b>:</b></ion-col>
+                   <ion-col col-7 text-left>
+                       <div *ngIf="soft!=''||hard !=''||othermodel !=''||description !=''">{{soft}}{{hard}}{{othermodel}}{{description}}</div>
+                   </ion-col>
+                 </ion-row>
+                 <ion-row *ngIf = "preferredlocation">
+                     <ion-col col-4 text-left>
+                      <b>Preferred Location</b>
+                     </ion-col>
+                     <ion-col col-1><b>:</b></ion-col>
+                     <ion-col col-7 text-left>
+                         {{preferredlocation}}
+                     </ion-col>
+                   </ion-row>
+                   <ion-row *ngIf = "pickup">
+                        <ion-col col-4 text-left>
+                         <b>Pickup</b>
+                        </ion-col>
+                        <ion-col col-1><b>:</b></ion-col>
+                        <ion-col col-7 text-left>
+                            {{pickup}}
+                        </ion-col>
+                      </ion-row>
+                   <ion-row>
+                       <ion-col col-4 text-left>
+                        <b> Booking Date</b>
+                       </ion-col>
+                       <ion-col col-1><b>:</b></ion-col>
+                       <ion-col col-7 text-left>
+                           {{booking_date}}
+                       </ion-col>
+                     </ion-row>
+                     <div *ngIf="audio">
+                            <audio controls>
+                            <source src="http://rytefix.in/images/audio/{{audio}}" type="audio/mp3">
+                                <!-- <source src="http://sunrisetechs.com/images/audio/test.mp3"type="audio/mp3"> -->
+                            </audio>
+                            </div>
+                            <button ion-button class="edit" block *ngIf ="status==null && cancelStatus==null" small round  (click)="editBooking(cdata,cgadget)">edit booking details</button>
+                        </ion-list>
+                   
+                          
+                        <hr class="style1">  
+                        <ion-item>
+                                <h2 class="head1"><b>Quotes Received</b></h2>
+                                 </ion-item> 
+                      
+         <ion-list *ngFor="let item of quoteview">
+            <ion-card style="background-color:rgba(19, 18, 18, 0.03);" *ngIf="item.accept_status">
+           <!-- <ion-slides pager="true"> -->
+                <!-- <ion-list> -->
+           <!-- <ion-slide  > -->
+               
+          <ion-card-header>
+                <ion-row>
+                        <ion-col col-12 text-center class="box">
+                            {{item.username}}
+                        </ion-col>
+                      </ion-row>
+                  
+          </ion-card-header>
+                    
+              <ion-card-content>
+
+              
+                   
+                     <ion-row *ngIf="item.exactprice">
+                         <ion-col col-5 text-left>
+                          <b>  Original Price</b>
+                         </ion-col>
+                         <ion-col col-1><b>:</b></ion-col>
+                         <ion-col col-6 text-left>
+                             {{item.exactprice}}
+                         </ion-col>
+                       </ion-row>
+                       <ion-row *ngIf="item.second_quality_price">
+                               <ion-col col-5 text-left>
+                                <b> 2nd Quality Price</b>
+                               </ion-col>
+                               <ion-col col-1><b>:</b></ion-col>
+                               <ion-col col-6 text-left>
+                                   {{item.second_quality_price}}
+                               </ion-col>
+                             </ion-row>
+                             <ion-row *ngIf="item.time_period">
+                                   <ion-col col-5 text-left>
+                                    <b> Time Required</b>
+                                   </ion-col>
+                                   <ion-col col-1><b>:</b></ion-col>
+                                   <ion-col col-6 text-left>
+                                       {{item.time_period}}
+                                   </ion-col>
+                                 </ion-row>
+                       <ion-row *ngIf="item.warranty">
+                           <ion-col col-5 text-left>
+                            <b> Warranty</b>
+                           </ion-col>
+                           <ion-col col-1><b>:</b></ion-col>
+                           <ion-col col-6 text-left>
+                               {{item.warranty}}
+                           </ion-col>
+                         </ion-row>
+                         <ion-row *ngIf="item.pickup">
+                               <ion-col col-5 text-left>
+                                <b> Home Pick Up</b>
+                               </ion-col>
+                               <ion-col col-1><b>:</b></ion-col>
+                               <ion-col col-6 text-left>
+                                   {{item.pickup}}
+                               </ion-col>
+                             </ion-row>
+                         <ion-row *ngIf="item.description">
+                             <ion-col col-5 text-left>
+                              <b> Description</b>
+                             </ion-col>
+                             <ion-col col-1><b>:</b></ion-col>
+                             <ion-col col-6 text-left>
+                                 {{item.description}}
+                             </ion-col>
+                           </ion-row>
+                           <div *ngIf="item.audio">
+                            <audio controls>
+                            <source src="http://rytefix.in/images/audio/{{item.audio}}" type="audio/mp3">
+                                <!-- <source src="http://sunrisetechs.com/images/audio/test.mp3"type="audio/mp3"> -->
+                            </audio>
+                            </div>
+                           <ion-row *ngIf="item.accept_status==2">
+                                <ion-col col-5 text-left>
+                                 <b> Reason</b>
+                                </ion-col>
+                                <ion-col col-1><b>:</b></ion-col>
+                                <ion-col col-6 text-left>
+                                  {{item.reason}}
+                                </ion-col>
+                              </ion-row> 
+                              <ion-row *ngIf="item.customer_completed==1">
+                                <ion-col col-5 text-left>
+                                 <b> Status</b>
+                                </ion-col>
+                                <ion-col col-1><b>:</b></ion-col>
+                                <ion-col col-6 text-left>
+                                  Customer completed the Services
+                                </ion-col>
+                              </ion-row> 
+                              <ion-row *ngIf="item.accept_status==2">
+                                    <ion-col col-5 text-left>
+                                     <b> Status</b>
+                                    </ion-col>
+                                    <ion-col col-1><b>:</b></ion-col>
+                                    <ion-col col-6 text-left>
+                                     Declined by vendor
+                                    </ion-col>
+                                  </ion-row> 
+                                  <ion-row *ngIf="item.accept_status==4">
+                                        <ion-col col-5 text-left>
+                                         <b> Status</b>
+                                        </ion-col>
+                                        <ion-col col-1><b>:</b></ion-col>
+                                        <ion-col col-6 text-left>
+                                         Declined by Customer
+                                        </ion-col>
+                                      </ion-row> 
+                           <ion-row *ngIf="item.accept_status==1||item.accept_status==3">   
+                                <ion-col col-5 text-left>
+                                    <b>Contact Service Center</b>
+                                </ion-col>
+                                <ion-col col-1><b>:</b></ion-col>      
+                          <ion-col col-3 >
+                                <button ion-button color="primary" small round icon-only (click)="quoteCall(item.mobile)">
+                                        <ion-icon ios="ios-call" md="md-call"></ion-icon></button>
+                                 </ion-col>
+                                 <ion-col col-3>
+                                       <button ion-button  color="dark" small round icon-only (click)="quoteChat(item.id)" >
+                                   <ion-icon ios="ios-chatbubbles" md="md-chatbubbles"></ion-icon></button>
+                                 </ion-col>
+                                 </ion-row>
+                           <!-- <ion-row>
+                               <ion-col col-5 text-left>
+                                <b> Expires In</b>
+                               </ion-col>
+                               <ion-col col-1><b>:</b></ion-col>
+                               <ion-col col-6 text-left>
+                                 
+                               </ion-col>
+                             </ion-row>      -->
+               
+               
+              <div *ngIf="item.accept_status==1||item.accept_status==3&&item.customer_completed==0">
+               <div class="btn-group">
+                  <ion-row>
+                    <!-- <ion-col col-3>
+                        <button ion-button color="dark" [hidden]="item.cancel_status" small class="button" (click)="quoteChat(item.id)" icon-only>Chat</button>          
+                    </ion-col> -->
+                       <!-- <ion-col col-3>
+                               <button ion-button color="secondary" [hidden]="item.cancel_status"  small class="button" (click)="quoteCall(item.mobile)" icon-only>Call</button>
+                              </ion-col>-->
+                           <ion-col *ngIf="item.accept_status==1" col-6 text-center> 
+                               <!-- <button ion-button color="primary" [hidden]="item.cancel_status" small class="button" (click)="quoteAccept1(item)" icon-only>Accept</button> -->
+                               <button ion-button color="secondary" [hidden]="item.cancel_status"  class="button" (click)="quoteAccept(item.id,item)" >Accept</button>
+                              </ion-col>
+                               <ion-col *ngIf="item.accept_status==1" col-6 text-center>
+                                       <button ion-button color="light" [hidden]="item.cancel_status"  class="button" (click)="quoteIgnore(item.id)" >Ignore</button>
+                                   </ion-col>
+                                </ion-row>
+                                   <ion-row>
+                                       <ion-col col-12 text-center>
+                                            <div *ngIf="item.accept_status==3">
+                                                    <button ion-button block color="secondary" class="button" (click)="completeQuote(item.vendor,item.booking_id,item)" block>Complete the service</button>
+                                                </div>
+                                       </ion-col>
+                                   </ion-row>
+                                  
+                                    <ion-row>
+                                            <ion-col col-12 text-center>
+                                                    <div *ngIf="item.accept_status==3">    
+                                                            <button ion-button block color="dark" class="button" (click)="declineQuote(item.vendor,item.booking_id)" block>Decline the vendor</button>
+                                                              </div>
+                                            </ion-col>
+                                        </ion-row>
+                                        
+
+<!-- ////////////////////////////////////////////////////////////////////////////                                    -->
+<!-- <ion-col *ngIf="item.accept_status==1||item.accept_status==2" col-3>
+               
+        <button ion-button color="primary" [hidden]="item.cancel_status" small class="button" (click)="quoteAccept(item.id,item)" icon-only>Accept</button>
+       </ion-col>
+        <ion-col *ngIf="item.accept_status==1||item.accept_status==2" col-3>
+                <button ion-button color="light" [hidden]="item.cancel_status" small class="button" (click)="quoteIgnore(item.id)" icon-only>Ignore</button>
+            </ion-col> -->
+                                               
+                 
+                </div>
+                </div>
+            </ion-card-content>
+        <!-- </ion-list> -->
+            <!-- </ion-slide> -->
+                <hr class="style1">
+            <!-- </ion-list> -->
+       
+        <!-- </ion-slides> -->
+    </ion-card>
+<!-- <hr class="style1"> -->
+</ion-list>
+
+
+</ion-content> 
+
+

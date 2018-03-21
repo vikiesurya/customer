@@ -1,0 +1,187 @@
+<!--
+  Generated template for the ViewacceptQuotePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header no-border>
+
+    <ion-toolbar no-padding>
+      <ion-title>Response Details</ion-title>
+    </ion-toolbar>
+  
+  </ion-header>
+  
+  
+  <ion-content>
+  <ion-card>
+    <ion-card-header>
+      <h4 class="text1">Booking Details</h4>
+    </ion-card-header>
+    <ion-card-content>
+        <ion-row>
+            <ion-col col-4 text-left>
+            <h5><b>Make</b></h5>
+        </ion-col>
+        <ion-col col-1><b>:</b></ion-col>
+        <ion-col col-7 text-left>
+            <h5> {{viewdata.make_name}}</h5>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+          <ion-col col-4 text-left>
+           <h5><b>Model</b></h5>
+       </ion-col>
+       <ion-col col-1><b>:</b></ion-col>
+       <ion-col col-7 text-left>
+           <h5>  {{viewdata.model}}</h5>
+       </ion-col>
+     </ion-row>
+     <ion-row>    
+       <ion-col col-4 text-left>
+           <h5><b>Problem</b></h5>
+       </ion-col>
+       <ion-col col-1><b>:</b></ion-col>
+       <ion-col col-7 text-left>
+         <p *ngIf="softService!=''||hardServise !=''||others !=''">{{viewdata.softService}}{{viewdata.hardService}}{{viewdata.others}}</p>
+       </ion-col>
+     </ion-row>
+     <ion-row >
+            <ion-col col-4 text-left>
+           <h5><b>Pickup</b></h5>
+       </ion-col>
+       <ion-col col-1><b>:</b></ion-col>
+       <ion-col col-7 text-left>
+           <h5>   {{viewdata.pickup}}</h5>
+       </ion-col>
+     </ion-row>
+     <ion-row>   
+        <ion-col col-4 text-left>
+            <h5><b>Booking Date</b></h5>
+        </ion-col>
+        <ion-col col-1><b>:</b></ion-col>      
+  <ion-col col-7  text-left>
+  <h5>{{viewdata.posted_on}}</h5>
+         </ion-col>
+         </ion-row>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+        <h4 class="text1">Assigned Vendor</h4>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-row>   
+          <ion-col col-4 text-left>
+              <h5><b>Name</b></h5>
+          </ion-col>
+          <ion-col col-1><b>:</b></ion-col>      
+    <ion-col col-7  text-left>
+    <h5>{{viewdata.username}}</h5>
+           </ion-col>
+           </ion-row>
+           <ion-row>   
+              <ion-col col-4 text-left>
+                  <h5><b>Area</b></h5>
+              </ion-col>
+              <ion-col col-1><b>:</b></ion-col>      
+        <ion-col col-7  text-left>
+        <h5>{{viewdata.area}}</h5>
+               </ion-col>
+               </ion-row>
+               <ion-row>   
+                  <ion-col col-4 text-left>
+                      <h5><b>Contact No</b></h5>
+                  </ion-col>
+                  <ion-col col-1><b>:</b></ion-col>      
+            <ion-col col-5 text-left>
+            <h5>{{viewdata.mobile}}</h5>
+                   </ion-col>
+                   <ion-col col-2>
+                      <button ion-button color="secondary" small round icon-only (click)="contactUs()"><ion-icon name="ios-call-outline"></ion-icon></button>
+                   </ion-col>
+                   </ion-row>
+                   <ion-row>
+                     <ion-col col-12 text-center>
+                       <h4  class="text2">Quotation Details</h4>
+                     </ion-col>
+                   </ion-row>
+                   <ion-row>
+                      <ion-col col-5 text-left>
+                       <b>  Original Spare Price</b>
+                      </ion-col>
+                      <ion-col col-1><b>:</b></ion-col>
+                      <ion-col col-6 text-left>
+                          {{viewdata.exactprice}}
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                            <ion-col col-5 text-left>
+                             <b> Second Quality Price</b>
+                            </ion-col>
+                            <ion-col col-1><b>:</b></ion-col>
+                            <ion-col col-6 text-left>
+                                {{viewdata.second_quality_price}}
+                            </ion-col>
+                          </ion-row>
+                          <ion-row>
+                                <ion-col col-5 text-left>
+                                 <b> Time Required</b>
+                                </ion-col>
+                                <ion-col col-1><b>:</b></ion-col>
+                                <ion-col col-6 text-left>
+                                    {{viewdata.time_period}}
+                                </ion-col>
+                              </ion-row>
+                    <ion-row>
+                        <ion-col col-5 text-left>
+                         <b> Warranty</b>
+                        </ion-col>
+                        <ion-col col-1><b>:</b></ion-col>
+                        <ion-col col-6 text-left>
+                            {{viewdata.warranty}}
+                        </ion-col>
+                      </ion-row>
+                      <ion-row>
+                            <ion-col col-5 text-left>
+                             <b> Home Pick Up</b>
+                            </ion-col>
+                            <ion-col col-1><b>:</b></ion-col>
+                            <ion-col col-6 text-left>
+                                {{viewdata.pickup_type}}
+                            </ion-col>
+                          </ion-row>
+                      <ion-row>
+                          <ion-col col-5 text-left>
+                           <b> Description</b>
+                          </ion-col>
+                          <ion-col col-1><b>:</b></ion-col>
+                          <ion-col col-6 text-left>
+                              {{viewdata.description}}
+                          </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col col-5 text-left>
+                             <b> Expires In</b>
+                            </ion-col>
+                            <ion-col col-1><b>:</b></ion-col>
+                            <ion-col col-6 text-left>
+                              
+                            </ion-col>
+                          </ion-row> 
+                          <!-- <ion-row>-->
+                              <!-- <ion-col col-2></ion-col> -->
+                                <!-- <ion-col col-6> -->
+                                  <button ion-button color="secondary" (click)="completeQuote()" block>Complete the service</button>
+                                <!-- </ion-col> -->
+                                <!-- <ion-col col-2></ion-col> -->
+                                <!-- <ion-col col-6> -->
+                                    <button ion-button color="dark" (click)="declineQuote()" block>Report the problem</button>
+                                  <!-- </ion-col> -->
+                                  <!-- <ion-col col-2></ion-col> -->
+                              <!-- </ion-row> -->
+    </ion-card-content>
+  </ion-card>
+  
+  
+    </ion-content> 

@@ -1,0 +1,90 @@
+page-quotehistory {
+    .toolbar-background {
+        background-color: #0679c9;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+//    .content{
+//          background-image: url('../assets/imgs/bg-pic.jpg');
+//          margin-top: 0px !important;
+//     }
+    .toolbar-title{
+        font-size: 2rem;
+          font-weight: 500;
+          color: #fff;
+          text-align: center;
+          margin-left: -20px;
+      }
+      .card-md h2 {
+        margin: 0px 0;
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: #000;
+    }
+    .datalength{
+        color:  #0679c9;
+        font-weight:bold;
+        font-size:1.5rem;
+        text-align:center;
+        margin-top:30px;
+    }
+    .card-content-md{
+        padding: 0px 8px;
+        font-size: 1.3rem;
+        line-height: 0.8 !important;
+       
+    }
+      .scroll-content {
+    padding: 0px !important; 
+     }
+    //   .ion-card{
+    //     background-color: rgba(0, 0, 0, 0.1);
+    //   }
+.card{
+    border-radius:20px !important;
+    margin-top:10px;
+    margin-bottom:20px;
+    background-color: rgba(221, 221, 221, 0.49);
+}
+    .card-header,h5 {
+        background-color:#4cd1e6 !important; 
+        padding:6px;
+        color:#fff !important;
+        text-align:center;
+        font-weight:bold !important;
+    }
+.color-wh{
+    color:#fff !important;
+}
+.item , .p{
+    color:#000;
+}
+.danger{
+    color:#fff;
+    background-color: #e85d2b;
+}
+.edit{
+    background-color: #9b50c1;
+    color:#fff;
+}
+ion-icon{
+    font-size: 1.2em;
+}
+
+.color1{
+    color:#47BEC2;
+    font-weight:bold;
+    }
+    // .color2{
+    // color:rgb(189, 0, 0);
+    // }
+    .color3{
+    color:#008000;
+    font-weight:bold;
+    }
+    .color4{
+    color:#FF5733;
+    font-weight:bold;
+    }
+}

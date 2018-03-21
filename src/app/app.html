@@ -1,0 +1,55 @@
+<ion-menu [content]="content" (ionOpen)="menuOpened()" >
+  <ion-header no-border >
+    <ion-toolbar no-padding>
+      <ion-title style="color:#fff">Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="custom">
+    <ion-card text-center class="hide-card">
+        <img class="pimg" src="http://rytefix.in/images/imgs/{{profilepic}}" class="custom-avatar"/>
+        <h2>{{username}}</h2>
+       
+    </ion-card>
+       <ion-list>
+          <ion-item menuClose (click)="gotoTabspage()" detail-push>
+              <img src="http://rytefix.in/images/imgs/customerAppImages/home.png" />
+              Home
+          </ion-item>
+
+          <ion-item menuClose (click)="gotoProfilepage()" detail-push>
+              <img src="http://rytefix.in/images/imgs/customerAppImages/user.png" />
+              Profile
+          </ion-item>
+          <ion-item menuClose (click)="gotoChangepasspage()" detail-push>
+              <img src="http://rytefix.in/images/imgs/customerAppImages/lock.png" />
+            Change Password
+          </ion-item>
+          <ion-item menuClose (click)="inviteFriends()" detail-push>
+              <img src="http://rytefix.in/images/imgs/customerAppImages/flag.png" />
+             Invite Friends
+          </ion-item>
+          <ion-item menuClose (click)="rateUs()" detail-push>
+            <img src="http://rytefix.in/images/imgs/customerAppImages/rate.png" />
+           Rate Us
+        </ion-item>
+        <ion-item menuClose (click)="FAQ()" detail-push>
+            <img src="http://rytefix.in/images/imgs/customerAppImages/rate.png" />
+           FAQ
+        </ion-item>
+        <ion-item menuClose (click)="contactUs()" detail-push>
+            <img src="http://rytefix.in/images/imgs/customerAppImages/rate.png" />
+           Contact Us
+        </ion-item>
+        <ion-item menuClose detail-push>
+            <!-- <img src="http://rytefix.in/images/imgs/customerAppImages/logout.png" /> -->
+            <button ion-button clear icon-left (click)="logout()" color="dark" full style="font-size:1.4rem"><ion-icon name="log-out" ></ion-icon> {{logfun}}</button>
+            <!-- <ion-icon item-start name="log-out" ></ion-icon> -->
+            <!-- {{logfun}} -->
+            </ion-item>
+          </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

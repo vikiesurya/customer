@@ -1,0 +1,107 @@
+<ion-header no-border>
+
+  <ion-toolbar no-padding>
+      <button ion-button menuToggle>
+          <ion-icon name="menu" class="color-wh"></ion-icon>
+      </button>
+    <ion-title>Booking History</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content padding class="content">
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+        pullingText="Pull to refresh"
+        refreshingSpinner="circles"
+        refreshingText="Refreshing...">
+          </ion-refresher-content>
+                          </ion-refresher>
+      
+  <ion-list>
+    <ion-item *ngFor="let item of quoteHistory">
+
+        <ion-row *ngIf="item.gadget">
+            <ion-col col-5 text-left>
+             <b>Service</b>
+            </ion-col>
+            <ion-col col-1><b>:</b></ion-col>
+            <ion-col col-6 text-left>
+                <p>   {{item.gadget}}</p>
+            </ion-col>
+          </ion-row>
+            <ion-row *ngIf="item.make" >
+                    <ion-col col-5 text-left>
+                     <!-- <b *ngIf = 'item.gadget =="tv_printer_AC_others"'>Service</b> -->
+                     <b>Make</b>
+
+                    </ion-col>
+                    <ion-col col-1><b>:</b></ion-col>
+                    <ion-col col-4 text-left>
+                        <p>  {{item.make_name}}</p><p *ngIf="item.make_name==null">{{item.make}}</p>
+                    </ion-col>
+                    <!-- <ion-col col-2  *ngIf="(item.cancel_status!=1||item.cancel_status!=2) && (item.customer_completed==0)" style="margin-top:-2%" >
+                        <button ion-button  [disabled]="item.accept_status" [hidden]="item.booking_id||item.cancel_status"class="edit" small round (click)="editBooking(item.book_id,item.gadget)" icon-only><ion-icon name="md-create"></ion-icon></button>
+                    </ion-col> -->
+                  </ion-row>
+                  <ion-row *ngIf="item.model">
+                        <ion-col col-5 text-left>
+                         <b>Model</b>
+                        </ion-col>
+                        <ion-col col-1><b>:</b></ion-col>
+                        <ion-col col-6 text-left>
+                            <p>   {{item.model}}</p>
+                        </ion-col>
+                      </ion-row>
+                      <ion-row>
+                          <ion-col col-5 text-left>
+                           <b> Booking Date</b>
+                          </ion-col>
+                          <ion-col col-1><b>:</b></ion-col>
+                          <ion-col col-6 text-left>
+                             <p> {{item.posted_on}}</p>
+                          </ion-col>
+                        </ion-row>
+
+                        <ion-row>
+                          <ion-col col-5 text-left>
+                           <b>Status</b>
+                          </ion-col>
+                          <ion-col col-1><b>:</b></ion-col>
+                          <ion-col col-6 text-left>
+                             
+                            <div *ngIf="!item.cancel_status">
+                              <p *ngIf="(!item.id||!item.accept_status||item.accept_status==1)&&(item.customer_completed==0)"> <span class="color1">In-progress</span></p>
+                              <!-- <p *ngIf="item.accept_status==1">In-progress</p> -->
+                             
+                              
+                            </div>
+                            <div *ngIf="(item.cancel_status==1||item.cancel_status==2) && (item.customer_completed==0)"><span class="color4">Booking Cancelled</span></div>
+                            <p *ngIf="(item.cancel_status==3) && (item.customer_completed==0)"><span class="color4">Cancel Request Sent</span></p>
+                            <div *ngIf="item.customer_completed==1"><span class="color3">Service completed</span></div>
+                          </ion-col>
+                        </ion-row>
+                        <div class="btn-group">
+                          <ion-row>
+                            <!-- <ion-col col-6 text-center>
+                                <button ion-button color="primary" full [disabled]="!item.booking_id||!item.accept_status" round class="button" small (click)="quoteShow(item.book_id)">Quotes</button>
+                            </ion-col> -->
+                            <ion-col col-6 text-center>
+                              <button ion-button color="primary" full round class="button" small (click)="quoteShow(item.book_id)">Quotes</button>
+                          </ion-col>
+                            <!-- <ion-col col-3 text-center>
+                              <button ion-button color="primary" [disabled]="item.id" class="edit" small (click)="editBooking(item.book_id,item.gadget)" icon-only>Edit</button>
+                            </ion-col> -->
+                              <ion-col col-6 text-center  *ngIf="(item.cancel_status!=1||item.cancel_status!=2) && (item.customer_completed==0)">
+                                  <button ion-button  [hidden]="item.cancel_status" full class="danger" round small (click)="ServiceCancel(item.book_id)" >Cancel Booking</button>
+                              </ion-col>
+                            </ion-row>
+                              </div>
+                        </ion-item></ion-list>
+                        <div *ngIf ="quoteHistory?.length == 0">
+                            <ion-label class="datalength">No Service Booking History To Show</ion-label>
+                            </div>
+
+                          
+</ion-content>
